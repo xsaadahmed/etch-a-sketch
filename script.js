@@ -10,10 +10,13 @@ for (let i = 0; i < n**2; i++){
     squareSize = 800 / n
     const div = document.createElement('div'); // Create a new div
     div.classList.add('grid-square'); // Add a class to style the square
-    div.classList.add('grid-square'); // Add a class to style the square
     div.style.height = `${squareSize}px`
     div.style.width = `${squareSize}px`
     container.appendChild(div); // Append the div to the container
+
+    div.addEventListener("click", function(){
+        div.style.backgroundColor = getRandomColor()
+    }) 
 }
 }
 
@@ -47,9 +50,18 @@ function promptNumOfSquares() {
     return _numOfSquares; // Return the valid input
 }
 
+drawSketchPad(16)
+
 numOfSquares.addEventListener("click", function(){
     clearPad()
     drawSketchPad(promptNumOfSquares())
 }) 
 
-drawSketchPad(16)
+function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
